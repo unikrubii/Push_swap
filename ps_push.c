@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ps_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/02 03:06:07 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/02 11:32:15 by sthitiku         ###   ########.fr       */
+/*   Created: 2022/07/02 11:30:04 by sthitiku          #+#    #+#             */
+/*   Updated: 2022/07/02 11:36:47 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_ps **from, t_ps **to)
+static void	push_lst(t_ps **from, t_ps **to)
 {
 	t_ps	*to_push;
 	t_ps	*head;
@@ -25,46 +25,16 @@ void	push(t_ps **from, t_ps **to)
 	*to = to_push;
 }
 
-int	main(int ac, char **av)
+void	push(t_ps **from, t_ps **to, char dest)
 {
-	t_ps	*a;
-	t_ps	*b;
-	t_ps	*tmp;
-	int		i;
-
-	a = malloc(sizeof(t_ps));
-	a->num = 0;
-	a->next = NULL;
-	tmp = a;
-	i = 1;
-	while(i <= 5)
+	if (dest == 'a')
 	{
-		tmp->next = malloc(sizeof(t_ps));
-		tmp->next->num = i;
-		tmp = tmp->next;
-		i++;
+		push_lst(from, to);
+		write(1, "pa\n", 3);
 	}
-	// r_rotate(&a, NULL);
-	push(&a, &b);
-	push(&a, &b);
-	push(&a, &b);
-	tmp = a;
-	while (tmp)
+	else
 	{
-		printf("%d\n", tmp->num);
-		tmp = tmp->next;
-	}
-	printf("------\n");
-	tmp = b;
-	while (tmp)
-	{
-		printf("%d\n", tmp->num);
-		tmp = tmp->next;
-	}
-	while(a)
-	{
-		tmp = a;
-		a = a->next;
-		free(tmp);
+		push_lst(from, to);
+		write(1, "pb\n", 3);
 	}
 }
