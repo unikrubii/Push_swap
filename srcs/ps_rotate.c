@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:47:08 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/02 11:00:01 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:20:16 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incs/push_swap.h"
 
 static void	r_rotate_lst(t_ps **lst)
 {

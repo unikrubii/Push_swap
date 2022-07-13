@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:06:07 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/02 11:32:15 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:20:29 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incs/push_swap.h"
 
 void	push(t_ps **from, t_ps **to)
 {
@@ -27,9 +27,9 @@ void	push(t_ps **from, t_ps **to)
 
 int	main(int ac, char **av)
 {
-	t_ps	*a;
-	t_ps	*b;
-	t_ps	*tmp;
+	t_list	*a;
+	t_list	*b;
+	t_list	*tmp;
 	int		i;
 
 	a = malloc(sizeof(t_ps));

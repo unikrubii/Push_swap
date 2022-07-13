@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 04:56:33 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/02 05:03:46 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:20:03 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incs/push_swap.h"
 
 static void	swap_lst(t_ps **lst)
 {
