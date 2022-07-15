@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:57:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/13 20:32:25 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/07/16 00:09:33 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	lst_init(t_ps **a, char *num)
 	t_ps	*tmp;
 
 	lst = malloc(sizeof(t_ps));
+	if (!lst)
+	{
+		ps_lstclear(&lst);
+		exit(MALLOC_ERR);
+	}
 	lst->num = ft_atoi(num);
 	lst->next = NULL;
 	ps_addback(a, lst);
@@ -98,11 +103,24 @@ int	main(int ac, char **av)
 			ps_args_to_lst(av[i], &a);
 			i++;
 		}
-		show_list(&a);
-		ps_lstclear(&a);
+		if (ps_check_dup(&a) == 1)
+		{
+			ps_lstclear(&a);
+		}
+		else
+		{
+			write(1, "push_swap\n", 10);
+			show_list(&a);
+			printf("--\n");
+			printf("%d\n", ps_find_median(&a));
+			printf("--\n");
+			ps_lstclear(&a);
+		}
 	}
 	else
-	{
-		write(1, "exit\n", 5);
-	}
+		write(1, "Error\n", 6);
 }
+
+// What to do
+// 1. check for non number in args
+// 2. check for number beyond int boundary

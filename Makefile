@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 21:22:32 by sthitiku          #+#    #+#              #
-#    Updated: 2022/07/10 21:40:33 by sthitiku         ###   ########.fr        #
+#    Updated: 2022/07/15 22:18:36 by sthitiku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = ps_args.c ps_lstadd.c
+SRCS = ps_args.c ps_lstadd.c ps_check_lst.c ps_median.c
 OBJS = $(SRCS:.c=.o)
 HEADER = push_swap.h
 

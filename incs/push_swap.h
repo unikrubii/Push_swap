@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:10:59 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/13 20:32:01 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:18:52 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+
+# define MALLOC_ERR -1
 
 typedef struct s_ps
 {
@@ -29,6 +31,9 @@ typedef struct s_ps
 // void	r_rotate(t_ps **a, t_ps **b);
 void	ps_addfront(t_ps **lst, t_ps *new);
 void	ps_addback(t_ps **lst, t_ps *new);
-void	ps_lstclear(t_list **lst);
+void	ps_lstclear(t_ps **lst);
+int		ps_check_sort(t_ps **lst);
+int		ps_check_dup(t_ps **lst);
+int		ps_find_median(t_ps **lst);
 
 #endif
