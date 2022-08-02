@@ -12,15 +12,19 @@
 
 #include "libft.h"
 
+static int	ft_isspace(char c)
+{
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
 int	ft_atoi(const char *str)
 {
-	int	minus;
-	int	result;
+	long	minus;
+	long	result;
 
 	minus = 1;
 	result = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\f' || \
-		*str == '\r' || *str == '\t' || *str == '\v')
+	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
 	{
@@ -33,5 +37,11 @@ int	ft_atoi(const char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	return (result * minus);
+	result *= minus;
+	if (result < -2147483648 || result > 2147483647)
+	{
+		write(1, "Error\n", 6);
+		exit(-2);
+	}
+	return (result);
 }

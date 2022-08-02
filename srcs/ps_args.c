@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rubii <rubii@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:57:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/16 00:09:33 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/08/03 01:26:11 by rubii            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,19 @@ void	lst_init(t_ps **a, char *num)
 {
 	t_ps	*lst;
 	t_ps	*tmp;
+	int		i;
 
+	printf("check in lst_init %s\n", num);
+	i = 0;
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]) && num[i] != '-')
+		{
+			write(1, "Error\n", 6);
+			exit(CONV_ERR);
+		}
+		i++;
+	}
 	lst = malloc(sizeof(t_ps));
 	if (!lst)
 	{
@@ -122,5 +134,5 @@ int	main(int ac, char **av)
 }
 
 // What to do
-// 1. check for non number in args
-// 2. check for number beyond int boundary
+// 1. check for non number in args --> done
+// 2. check for number beyond int boundary --> done

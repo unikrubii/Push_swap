@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rubii <rubii@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:10:59 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/15 21:18:52 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/08/03 00:38:15 by rubii            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../libft/libft.h"
 
 # define MALLOC_ERR -1
+# define CONV_ERR -2
 
 typedef struct s_ps
 {
