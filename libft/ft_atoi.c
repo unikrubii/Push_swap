@@ -40,7 +40,7 @@ int	ft_atoi(const char *str)
 	result *= minus;
 	if (result < -2147483648 || result > 2147483647)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		exit(-2);
 	}
 	return (result);

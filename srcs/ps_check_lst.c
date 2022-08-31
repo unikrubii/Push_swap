@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_check_lst.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:57:53 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/15 19:40:40 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/08/31 02:21:13 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,41 @@ int	ps_check_sort(t_ps **lst)
 	return (1);
 }
 
+int	ps_lst_len(t_ps **lst)
+{
+	t_ps	*curr;
+	int		len;
+
+	len = 0;
+	curr = *lst;
+	while (curr)
+	{
+		len++;
+		curr = curr->next;
+	}
+	return (len);
+}
+
 int	ps_check_dup(t_ps **lst)
 {
 	t_ps	*curr;
+	t_ps	*tmp;
 	int		num;
+	int		len;
 
+	len = ps_lst_len(lst);
 	num = (*lst)->num;
-	curr = (*lst)->next;
-	while (curr)
+	while (len >= 0)
 	{
-		if (curr->num == num)
-			return (1);
-		num = curr->num;
-		curr = curr->next;
+		curr = (*lst)->next;
+		while (curr)
+		{
+			if (curr->num == num)
+				return (1);
+			num = curr->num;
+			curr = curr->next;
+		}
+		len--;
 	}
 	return (0);
 }
