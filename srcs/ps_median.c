@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:28:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/08/31 04:50:57 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 01:50:46 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,18 @@ int ps_is_dup(int *arr, int arr_len)
 	return (0);
 }
 
-void ps_error(t_ps **lst, int sorted)
+void ps_error(t_ps **lst, int sorted, int code)
 {
 	if (sorted == 0)
 	{
 		write(2, "Error\n", 6);
 		ps_lstclear(lst);
-		exit(DUP_SORT);
+		exit(code);
 	}
 	else
 	{
-		write(1, "\n", 1);
 		ps_lstclear(lst);
-		exit(DUP_SORT);
+		exit(code);
 	}
 }
 
@@ -108,7 +107,7 @@ int	ps_find_median(t_ps **lst)
 	arr_len = ps_lst_len(lst);
 	quicksort(arr, 0, arr_len - 1);
 	if (ps_is_dup(arr, arr_len) == 1)
-		ps_error(lst, 0);
+		ps_error(lst, 0, DUP_SORT);
 	median = arr[arr_len / 2];
 	free(arr);
 	return (median);
@@ -128,7 +127,7 @@ void	ps_put_index(t_ps **lst)
 	while (curr)
 	{
 		i = 0;
-		while (arr[i])
+		while (i < arr_len)
 		{
 			if (curr->num == arr[i])
 			{

@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:10:59 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/08/31 05:01:51 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 01:08:21 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int		ps_check_sort(t_ps **lst);
 int		ps_check_dup(t_ps **lst);
 int		ps_lst_len(t_ps **lst);
 int		ps_find_median(t_ps **lst);
-void	ps_error(t_ps **lst, int sorted);
+int		ps_atoi(const char *str, t_ps **lst, char **split);
+void	ps_error(t_ps **lst, int sorted, int code);
 void	ps_pushback(t_ps **b, t_ps **a);
 void	ps_put_index(t_ps **lst);
 
@@ -46,6 +47,7 @@ void	r_rotate(t_ps **a, t_ps **b);
 void	swap(t_ps **a, t_ps **b);
 
 int		find_highest(t_ps **lst);
+void	free_split(char **to_free);
 
 void	show_list(t_ps **lst);
 

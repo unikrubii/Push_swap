@@ -6,14 +6,14 @@
 #    By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 21:22:32 by sthitiku          #+#    #+#              #
-#    Updated: 2022/08/31 01:00:48 by sthitiku         ###   ########.fr        #
+#    Updated: 2022/09/02 00:56:31 by sthitiku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRCS =	ps_args.c ps_lstops.c ps_check_lst.c ps_median.c ps_push.c ps_rotate.c \
-		ps_btoa.c ps_swap.c
+		ps_btoa.c ps_swap.c ps_atoi.c
 OBJS = $(SRCS:.c=.o)
 HEADER = push_swap.h
 

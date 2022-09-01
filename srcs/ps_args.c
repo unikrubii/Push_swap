@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:57:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/08/31 06:12:55 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 02:02:05 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,25 @@ int	split_len(char **num)
 	return (len);
 }
 
-void	lst_init(t_ps **a, char *num)
+void	lst_init(t_ps **a, char *num, char **split)
 {
 	t_ps	*lst;
 	t_ps	*tmp;
 	int		i;
 
-	// printf("check in lst_init %s\n", num);
 	i = 0;
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]) && num[i] != '-')
-		{
-			write(1, "Error\n", 6);
-			exit(CONV_ERR);
-		}
+			ps_error(a, 0, CONV_ERR);
 		i++;
 	}
 	lst = malloc(sizeof(t_ps));
 	if (!lst)
-	{
-		ps_lstclear(&lst);
-		exit(MALLOC_ERR);
-	}
-	lst->num = ft_atoi(num);
-	// lst->group = 0;
+		ps_error(a, 0, MALLOC_ERR);
+	if (*num == '-' && !ft_isdigit(*(num + 1)))
+		ps_error(a, 0, CONV_ERR);
+	lst->num = ps_atoi(num, a, split);
 	lst->index = -1;
 	lst->next = NULL;
 	ps_addback(a, lst);
@@ -81,7 +75,7 @@ void	ps_args_to_lst(char *str, t_ps **a)
 	i = 0;
 	while (i < len)
 	{
-		lst_init(a, num[i]);
+		lst_init(a, num[i], num);
 		i++;
 	}
 	free_split(num);
@@ -176,16 +170,12 @@ int	main(int ac, char **av)
 			i++;
 		}
 		if (ps_check_sort(&a) == 1)
-			ps_error(&a, 1);
+			ps_error(&a, 1, 0);
+			
 		ps_put_index(&a);
-		// show_list(&a);
-		// printf("lst len = %d\n", ps_lst_len(&a));
 		med = ps_find_median(&a);
 		if (!ps_check_sort(&a))
 			swap(&a, NULL);
-		// printf("%d\n", med);
-		// printf("---\n");
-		// push_median(&a, &b, ps_find_median(&a), 1);
 		if (ps_lst_len(&a) >= 100)
 		{
 			if (ps_lst_len(&a) >= 500)
@@ -196,23 +186,10 @@ int	main(int ac, char **av)
 		}
 		else
 			push_median(&a, &b, med);
-		// push_median(&a, &b, intv, intv);
 		if (!ps_check_sort(&a))
 			swap(&a, NULL);
-		// printf("\n");
 		ps_pushback(&b, &a);
-		// ps_btoa(&b, &a);
-		// ps_btoa(&b, &a);
-		// ps_btoa(&b, &a);
-		// ps_btoa(&b, &a);
-		// show_list(&a);
-		// printf("========\n");
-		// show_list(&b);
-		// printf("%d\n", ps_lst_len(&b));
-		// printf("%d\n", find_highest(&b));
-		// printf("%d\n", ps_check_sort(&a));
+		
 		ps_lstclear(&a);
 	}
-	else
-		write(1, "Error\n", 6);
 }

@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:57:53 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/08/31 02:21:13 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 01:15:05 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ps_check_sort(t_ps **lst)
 	curr = (*lst)->next;
 	while (curr)
 	{
-		if (curr->num < min)
+		if (curr->num <= min)
 			return (0);
 		min = curr->num;
 		curr = curr->next;
