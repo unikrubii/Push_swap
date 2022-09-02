@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:57:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/02 02:02:05 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:06:45 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,23 +107,89 @@ int	check_num(t_ps **lst, int median)
 	return (0);
 }
 
-void push_median(t_ps **from, t_ps **to, int med)
+void push_3(t_ps **lst)
 {
-	if (ps_lst_len(from) < 3)
-		return ;
-	if ((*from)->num < med)
+	int	max;
+	
+	max = find_highest(lst);
+	if ((*lst)->index == max)
 	{
-		push(from, to, 'b');
+		rotate(lst, NULL);
+		if (!ps_check_sort(lst))
+			swap(lst, NULL);
+	}
+	else if ((*lst)->index == max - 1)
+	{
+		if ((*lst)->next->index == max - 2)
+			swap(lst, NULL);
+		else
+			r_rotate(lst, NULL);
 	}
 	else
 	{
-		rotate(from, NULL);
+		rotate(lst, NULL);
+		swap(lst, NULL);
+		r_rotate(lst, NULL);
 	}
-	if (!check_num(from, med))
+}
+
+int	lowest_index(t_ps **lst)
+{
+	t_ps	*curr;
+	int		lowest;
+	int		i;
+
+	curr = (*lst)->next;
+	lowest = (*lst)->index;
+	i = 1;
+	while (curr)
 	{
-		med = ps_find_median(from);
+		if (curr->index < lowest)
+			lowest = curr->index;
+		i++;
+		curr = curr->next;
 	}
-	push_median(from, to, med);
+	return (i);
+}
+
+void push_5(t_ps **from, t_ps **to, int len)
+{
+	if (ps_check_sort(from) && ps_lst_len(to) == 0)
+		return ;
+	if (!ps_check_sort(from) && ps_lst_len(to) == 0 && \
+			(*from)->next->next->index == 3 && \
+			(*from)->next->next->next->index == 4 && \
+			(*from)->next->next->next->next->index == 5)
+	{
+		swap(from, NULL);
+		return ;
+	}
+	if (ps_lst_len(from) == 3 && !ps_check_sort(from))
+	{
+		push_3(from);
+		if ((*to)->index != 2)
+			swap(NULL, from);
+		push(to, from, 'a');
+		push(to, from, 'a');
+		return ;
+	}
+	if ((*from)->index <= 2)
+	{
+		if (ps_check_sort(from))
+			push(to, from, 'a');
+		else
+			push(from, to, 'b');
+	}
+	else
+	{
+		if (lowest_index(from) <= len / 2)
+			rotate(from, NULL);
+		else
+			r_rotate(from, NULL);
+	}
+	if (!ps_check_sort(from))
+		len = ps_lst_len(from);
+	push_5(from, to, len);
 }
 
 void push_intv(t_ps **from, t_ps **to, int counter, int intv)
@@ -154,15 +220,13 @@ int	main(int ac, char **av)
 	t_ps	*a;
 	t_ps	*b;
 	int		i;
-	int		med;
 	int		intv;
 
 	i = 1;
 	a = NULL;
 	b = NULL;
 	intv = 0;
-	med = 0;
-	if (ac >= 2)
+	if (ac >= 2 && av[1][0])
 	{
 		while (i < ac)
 		{
@@ -171,25 +235,36 @@ int	main(int ac, char **av)
 		}
 		if (ps_check_sort(&a) == 1)
 			ps_error(&a, 1, 0);
-			
+		// if (ps_check_dup(&a))
+		// 	ps_error(&a, 0, DUP_SORT);
+		ps_find_median(&a);
 		ps_put_index(&a);
-		med = ps_find_median(&a);
-		if (!ps_check_sort(&a))
-			swap(&a, NULL);
-		if (ps_lst_len(&a) >= 100)
+
+		// show_list(&a);
+		// r_rotate(&a, NULL);
+		// show_list(&a);
+		
+		if (ps_lst_len(&a) > 5)
 		{
 			if (ps_lst_len(&a) >= 500)
 				intv = ps_lst_len(&a) / 11;
 			else
 				intv = ps_lst_len(&a) / 4;
 			push_intv(&a, &b, intv, intv);
+			if (!ps_check_sort(&a))
+				swap(&a, NULL);
+			ps_pushback(&b, &a);
 		}
+		else if (ps_lst_len(&a) == 3)
+			push_3(&a);
 		else
-			push_median(&a, &b, med);
-		if (!ps_check_sort(&a))
-			swap(&a, NULL);
-		ps_pushback(&b, &a);
+			push_5(&a, &b, ps_lst_len(&a));
 		
+		// printf("A\n");
+		// show_list(&a);
+		// printf("========\n");
+		// printf("B\n");
+		// show_list(&b);
 		ps_lstclear(&a);
 	}
 }

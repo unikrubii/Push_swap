@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:10:59 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/02 01:08:21 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:03:17 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	swap(t_ps **a, t_ps **b);
 
 int		find_highest(t_ps **lst);
 void	free_split(char **to_free);
+void	ps_btoa(t_ps **b, t_ps **a, int max);
 
 void	show_list(t_ps **lst);
 

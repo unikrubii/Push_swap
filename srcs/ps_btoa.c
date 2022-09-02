@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:49:05 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/02 01:41:43 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:49:45 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	find_highest(t_ps **lst)
 {
 	t_ps	*curr;
 	int		max;
-	int		group;
 
 	max = (*lst)->index;
 	curr = (*lst)->next;
