@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 03:10:59 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/10 02:12:54 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:10:50 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ps_check_sort(t_ps **lst);
 int		ps_check_dup(t_ps **lst);
 int		ps_lst_len(t_ps **lst);
 int		ps_find_median(t_ps **lst);
-int		ps_atoi(const char *str, t_ps **lst, char **split);
+int		ps_atoi(const char *str, t_ps **lst, char **split, t_ps *new);
 void	ps_error(t_ps **lst, int sorted, int code);
 void	ps_pushback(t_ps **b, t_ps **a);
 void	ps_put_index(t_ps **lst);

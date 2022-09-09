@@ -17,15 +17,16 @@ static int	ft_isspace(char c)
 	return (c == ' ' || (c >= 9 && c <= 13));
 }
 
-static void	free_remain(t_ps **lst, char **split)
+static void	free_remain(t_ps **lst, char **split, t_ps *new)
 {
 	free_split(split);
 	ps_lstclear(lst);
+	free(new);
 	write(2, "Error\n", 6);
 	exit(CONV_ERR);
 }
 
-int	ps_atoi(const char *str, t_ps **lst, char **split)
+int	ps_atoi(const char *str, t_ps **lst, char **split, t_ps *new)
 {
 	long	minus;
 	long	result;
@@ -47,7 +48,7 @@ int	ps_atoi(const char *str, t_ps **lst, char **split)
 	}
 	result *= minus;
 	if (*str != '\0' || result < -2147483648 || result > 2147483647)
-		free_remain(lst, split);
+		free_remain(lst, split, new);
 	return (result);
 }
 

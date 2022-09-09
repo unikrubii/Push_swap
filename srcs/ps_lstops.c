@@ -6,7 +6,7 @@
 /*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:22:09 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/10 03:44:41 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:11:03 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ void	lst_init(t_ps **a, char *num, char **split)
 		}
 		i++;
 	}
-	lst = malloc(sizeof(t_ps));
-	if (!lst)
-		ps_error(a, 0, MALLOC_ERR);
 	if (*num == '-' && !ft_isdigit(*(num + 1)))
 	{
 		free_split(split);
 		ps_error(a, 0, CONV_ERR);
 	}
-	lst->num = ps_atoi(num, a, split);
+	lst = malloc(sizeof(t_ps));
+	if (!lst)
+		ps_error(a, 0, MALLOC_ERR);
+	lst->num = ps_atoi(num, a, split, lst);
 	lst->index = -1;
 	lst->next = NULL;
 	ps_addback(a, lst);
