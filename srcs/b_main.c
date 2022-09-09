@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:31:52 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/10 03:09:04 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 04:28:19 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	checker(char *inst, t_ps **a, t_ps **b)
 {
 	if (check_inst(a, b, inst) == 0)
 	{
-		write(2, "KO\n", 3);
+		write(2, "Error\n", 6);
 		free(inst);
 		exit (INPUT_ERR);
 	}
