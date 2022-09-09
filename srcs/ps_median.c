@@ -6,13 +6,13 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:28:55 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/02 01:50:46 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:25:40 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
-static int	*lst_to_arr(t_ps **lst)
+int	*lst_to_arr(t_ps **lst)
 {
 	t_ps	*curr;
 	int		*arr;
@@ -31,7 +31,7 @@ static int	*lst_to_arr(t_ps **lst)
 
 static void	ft_swap(int *a, int *b)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = *a;
 	*a = *b;
@@ -64,7 +64,7 @@ void	quicksort(int *num, int first, int last)
 	}
 }
 
-int ps_is_dup(int *arr, int arr_len)
+int	ps_is_dup(int *arr, int arr_len)
 {
 	int	i;
 
@@ -81,26 +81,10 @@ int ps_is_dup(int *arr, int arr_len)
 	return (0);
 }
 
-void ps_error(t_ps **lst, int sorted, int code)
-{
-	if (sorted == 0)
-	{
-		write(2, "Error\n", 6);
-		ps_lstclear(lst);
-		exit(code);
-	}
-	else
-	{
-		ps_lstclear(lst);
-		exit(code);
-	}
-}
-
 int	ps_find_median(t_ps **lst)
 {
 	int	*arr;
 	int	arr_len;
-	int	i;
 	int	median;
 
 	arr = lst_to_arr(lst);
@@ -111,32 +95,4 @@ int	ps_find_median(t_ps **lst)
 	median = arr[arr_len / 2];
 	free(arr);
 	return (median);
-}
-
-void	ps_put_index(t_ps **lst)
-{
-	int		*arr;
-	int		arr_len;
-	int		i;
-	t_ps	*curr;
-
-	curr = *lst;
-	arr = lst_to_arr(lst);
-	arr_len = ps_lst_len(lst);
-	quicksort(arr, 0, arr_len - 1);
-	while (curr)
-	{
-		i = 0;
-		while (i < arr_len)
-		{
-			if (curr->num == arr[i])
-			{
-				curr->index = i + 1;
-				break ;
-			}
-			i++;
-		}
-		curr = curr->next;
-	}
-	free(arr);
 }

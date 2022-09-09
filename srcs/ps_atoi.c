@@ -50,3 +50,14 @@ int	ps_atoi(const char *str, t_ps **lst, char **split)
 		free_remain(lst, split);
 	return (result);
 }
+
+void	ps_pushback(t_ps **b, t_ps **a)
+{
+	int	max;
+
+	while (!ps_check_sort(a) || ps_lst_len(b) > 0)
+	{
+		max = find_highest(b);
+		ps_btoa(b, a, max);
+	}
+}

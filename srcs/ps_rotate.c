@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:47:08 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/10 21:20:16 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:26:05 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ static void	r_rotate_lst(t_ps **lst)
 	t_ps	*curr;
 
 	curr = *lst;
+	head = NULL;
 	while (curr->next)
 	{
 		if (!curr->next->next)
 		{
 			head = curr->next;
 			curr->next = NULL;
-			break;
+			break ;
 		}
 		curr = curr->next;
 	}
@@ -50,42 +51,48 @@ static void	rotate_lst(t_ps **lst)
 	*lst = head;
 }
 
-void	rotate(t_ps **a, t_ps **b)
+void	rotate(t_ps **a, t_ps **b, int print)
 {
 	if (a && b)
 	{
 		rotate_lst(a);
 		rotate_lst(b);
-		write(1, "rr\n", 3);
+		if (print == 1)
+			write(1, "rr\n", 3);
 	}
 	else if (a)
 	{
 		rotate_lst(a);
-		write(1, "ra\n", 3);
+		if (print == 1)
+			write(1, "ra\n", 3);
 	}
 	else if (b)
 	{
 		rotate_lst(b);
-		write(1, "rb\n", 3);
+		if (print == 1)
+			write(1, "rb\n", 3);
 	}
 }
 
-void	r_rotate(t_ps **a, t_ps **b)
+void	r_rotate(t_ps **a, t_ps **b, int print)
 {
 	if (a && b)
 	{
 		r_rotate_lst(a);
 		r_rotate_lst(b);
-		write(1, "rrr\n", 4);
+		if (print == 1)
+			write(1, "rrr\n", 4);
 	}
 	else if (a)
 	{
 		r_rotate_lst(a);
-		write(1, "rra\n", 4);
+		if (print == 1)
+			write(1, "rra\n", 4);
 	}
 	else if (b)
 	{
 		r_rotate_lst(b);
-		write(1, "rrb\n", 4);
+		if (print == 1)
+			write(1, "rrb\n", 4);
 	}
 }

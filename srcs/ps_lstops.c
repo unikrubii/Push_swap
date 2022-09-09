@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_lstadd.c                                        :+:      :+:    :+:   */
+/*   ps_lstops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sthitiku <sthitiku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:22:09 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/07/15 20:27:24 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:59:23 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,27 @@ void	ps_addback(t_ps **lst, t_ps *new)
 			temp->next = new;
 		}
 	}
+}
+
+void	lst_init(t_ps **a, char *num, char **split)
+{
+	t_ps	*lst;
+	int		i;
+
+	i = 0;
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]) && num[i] != '-')
+			ps_error(a, 0, CONV_ERR);
+		i++;
+	}
+	lst = malloc(sizeof(t_ps));
+	if (!lst)
+		ps_error(a, 0, MALLOC_ERR);
+	if (*num == '-' && !ft_isdigit(*(num + 1)))
+		ps_error(a, 0, CONV_ERR);
+	lst->num = ps_atoi(num, a, split);
+	lst->index = -1;
+	lst->next = NULL;
+	ps_addback(a, lst);
 }

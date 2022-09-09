@@ -6,7 +6,7 @@
 /*   By: sthitiku <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:57:53 by sthitiku          #+#    #+#             */
-/*   Updated: 2022/09/02 01:15:05 by sthitiku         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:51:04 by sthitiku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,69 @@ int	ps_lst_len(t_ps **lst)
 int	ps_check_dup(t_ps **lst)
 {
 	t_ps	*curr;
-	t_ps	*tmp;
-	int		num;
+	t_ps	*next;
 	int		len;
 
 	len = ps_lst_len(lst);
-	num = (*lst)->num;
-	while (len >= 0)
+	curr = *lst;
+	while (len > 0)
 	{
-		curr = (*lst)->next;
-		while (curr)
+		next = curr->next;
+		while (curr && next)
 		{
-			if (curr->num == num)
+			if (curr->num == next->num)
 				return (1);
-			num = curr->num;
-			curr = curr->next;
+			next = next->next;
 		}
+		curr = curr->next;
 		len--;
 	}
 	return (0);
+}
+
+int	lowest_index(t_ps **lst)
+{
+	t_ps	*curr;
+	int		lowest;
+	int		i;
+
+	curr = (*lst)->next;
+	lowest = (*lst)->index;
+	i = 1;
+	while (curr)
+	{
+		if (curr->index < lowest)
+			lowest = curr->index;
+		i++;
+		curr = curr->next;
+	}
+	return (i);
+}
+
+void	ps_put_index(t_ps **lst)
+{
+	int		*arr;
+	int		arr_len;
+	int		i;
+	t_ps	*curr;
+
+	curr = *lst;
+	arr = lst_to_arr(lst);
+	arr_len = ps_lst_len(lst);
+	quicksort(arr, 0, arr_len - 1);
+	while (curr)
+	{
+		i = 0;
+		while (i < arr_len)
+		{
+			if (curr->num == arr[i])
+			{
+				curr->index = i + 1;
+				break ;
+			}
+			i++;
+		}
+		curr = curr->next;
+	}
+	free(arr);
 }
